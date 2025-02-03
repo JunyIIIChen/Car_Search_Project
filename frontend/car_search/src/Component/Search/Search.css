@@ -1,0 +1,132 @@
+/* 基础样式 */
+.search-container {
+    max-width: 1160px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.search-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-row {
+    display: flex;
+    gap: 20px;
+}
+
+.search-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-field label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.search-field input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-field input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.search-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+
+.search-select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.search-select:hover {
+    border-color: #0056b3;
+}
+
+
+
+.reset-button {
+    display: block;
+    float: right;
+    width: 10%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.more-filters-button {
+    display: block;
+    float: right;
+    width: 10%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .search-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-field {
+        width: 100%;
+    }
+}
