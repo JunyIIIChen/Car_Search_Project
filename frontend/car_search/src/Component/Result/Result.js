@@ -76,7 +76,7 @@ export default function Result({ searchCriteria }) {
               <th>State</th>
               <th>Category</th>
               <th>Salvage</th>
-              <th>Sale Date</th>
+              {/* <th>Sale Date</th> */}
               <th>Price</th>
               <th>Actions</th>
             </tr>
@@ -93,7 +93,7 @@ export default function Result({ searchCriteria }) {
                 <td>{car.state}</td>
                 <td>{car.sales_category}</td>
                 <td>{car.salvage_vehicle ? "Yes" : "No"}</td>
-                <td>{car.sale_date}</td>
+                {/* <td>{car.sale_date}</td> */}
                 <td>{car.sale_price}</td>
                 <td>
                   <button onClick={() => handleMoreClick(car)} className="more-btn">More</button>

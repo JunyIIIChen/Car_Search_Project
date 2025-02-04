@@ -14,7 +14,7 @@ export default function Search({ onSearch }) {
     engine: "",
     transmission: "",
     odometer: "",
-    sale_date: "",
+    // sale_date: "",
     custom_date: "",
     badges: "",
     cylinders: "",
@@ -25,7 +25,7 @@ export default function Search({ onSearch }) {
   });
 
   const [showMoreFilters, setShowMoreFilters] = useState(false);
-  const [filteredModels, setFilteredModels] = useState([]); // 用于存储可选的 model
+  const [filteredModels, setFilteredModels] = useState([]); 
 
   const options = {
     "make": ["Audi", "BMW", "Mercedes", "Toyota", "Ford", "Tesla", "Subaru"],
@@ -47,7 +47,7 @@ export default function Search({ onSearch }) {
     engine: ["2.0 Turbo", "3.0 V6", "4.0 V8"],
     transmission: ["Automatic", "Manual"],
     odometer: ["0-50k", "50k-100k", "100k-150k", "150k+"],
-    sale_date: ["Last Week", "Last Month", "Last Year"],
+    // sale_date: ["Last Week", "Last Month", "Last Year"],
     custom_date: ["2024-02-07", "2024-01-01", "2023-12-01"],
     badges: ["Quattro", "M Performance", "AMG"],
     cylinders: ["4", "6", "8"],
@@ -56,17 +56,17 @@ export default function Search({ onSearch }) {
     seats: ["2", "4", "5", "7"],
     doors: ["2", "4", "5"]
   };
-
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // 监听 make 变化
+    // listen to make change
     if (name === "make") {
-      setFilteredModels(options.model[value] || []); // 更新可选 model
+      setFilteredModels(options.model[value] || []); // update the available model
       setSearchCriteria((prev) => ({
         ...prev,
         make: value,
-        model: "" // 选中新的 make 后，清空 model 选择
+        model: ""
       }));
     } else {
       setSearchCriteria((prev) => ({
@@ -120,7 +120,7 @@ export default function Search({ onSearch }) {
       seats: "",
       doors: ""
     });
-    setFilteredModels([]); // 清空 model 选项
+    setFilteredModels([]); // empty model 
     onSearch({});
   };
 
@@ -167,6 +167,7 @@ export default function Search({ onSearch }) {
             </div>
           ))}
         </div>
+        {/* show more filter options */}
         <div className="button-group">
           <button type="button" className="more-filters-button" onClick={() => setShowMoreFilters(!showMoreFilters)}>
             {showMoreFilters ? "Show Less Filters" : "More Filters"}

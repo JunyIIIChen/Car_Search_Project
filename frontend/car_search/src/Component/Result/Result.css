@@ -58,7 +58,7 @@
     margin-right: 8px;
   }
 
-  /* 模态框背景 */
+  /* modal background */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -72,7 +72,7 @@
   z-index: 1000;
 }
 
-/* 模态框内容 */
+/* modal content */
 .modal-content {
   background: white;
   padding: 20px;
@@ -84,7 +84,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* 关闭按钮 */
+/* close button */
 .close-button {
   position: absolute;
   top: 10px;
@@ -104,7 +104,6 @@
   text-align: center;
 }
 
-/* 详细信息 */
 .modal-body {
   display: flex;
   flex-direction: column;

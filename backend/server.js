@@ -6,11 +6,11 @@ const cors = require('cors');
 const app = express();
 const port = 3002;
 
-// 中间件
+
 app.use(express.json());
 app.use(cors());
 
-// 读取 JSON 文件的辅助函数
+// read data from Json file
 async function readCarsData() {
     try {
         const data = await fs.readFile(path.join(__dirname, 'data', 'cars.json'), 'utf8');
@@ -21,7 +21,7 @@ async function readCarsData() {
     }
 }
 
-// 写入 JSON 文件的辅助函数
+// write into json
 async function writeCarsData(data) {
     try {
         await fs.writeFile(
@@ -35,31 +35,31 @@ async function writeCarsData(data) {
     }
 }
 
-// 获取所有车辆
+// get all car info
 app.get("/cars", async (req, res) => {
     try {
         const data = await readCarsData();
         res.json(data.cars);
     } catch (error) {
-        res.status(500).json({ error: "数据读取失败" });
+        res.status(500).json({ error: "Data reading failed" });
     }
 });
 
-// 获取单个车辆
+// get car
 app.get("/cars/:id", async (req, res) => {
     try {
         const data = await readCarsData();
         const car = data.cars.find(c => c.id === parseInt(req.params.id));
         if (!car) {
-            return res.status(404).json({ error: "车辆未找到" });
+            return res.status(404).json({ error: "Car not find" });
         }
         res.json(car);
     } catch (error) {
-        res.status(500).json({ error: "数据读取失败" });
+        res.status(500).json({ error: "Data reading failed" });
     }
 });
 
-// 添加新车辆
+// add a new car to json 
 app.post("/cars", async (req, res) => {
     try {
         const data = await readCarsData();
@@ -71,23 +71,23 @@ app.post("/cars", async (req, res) => {
         await writeCarsData(data);
         res.status(201).json(newCar);
     } catch (error) {
-        res.status(500).json({ error: "添加车辆失败" });
+        res.status(500).json({ error: "Failed to add a car" });
     }
 });
 
-// 更新车辆信息
+// update the car info
 app.put("/cars/:id", async (req, res) => {
     try {
         const data = await readCarsData();
         const index = data.cars.findIndex(c => c.id === parseInt(req.params.id));
         if (index === -1) {
-            return res.status(404).json({ error: "车辆未找到" });
+            return res.status(404).json({ error: "Car not find" });
         }
         data.cars[index] = { ...data.cars[index], ...req.body };
         await writeCarsData(data);
         res.json(data.cars[index]);
     } catch (error) {
-        res.status(500).json({ error: "更新车辆失败" });
+        res.status(500).json({ error: "Failed to update" });
     }
 });
 
@@ -97,17 +97,17 @@ app.delete("/cars/:id", async (req, res) => {
         const data = await readCarsData();
         const index = data.cars.findIndex(c => c.id === parseInt(req.params.id));
         if (index === -1) {
-            return res.status(404).json({ error: "车辆未找到" });
+            return res.status(404).json({ error: "Car not find" });
         }
         data.cars.splice(index, 1);
         await writeCarsData(data);
         res.status(204).send();
     } catch (error) {
-        res.status(500).json({ error: "删除车辆失败" });
+        res.status(500).json({ error: "Failed to delete the car" });
     }
 });
 
-// 多条件搜索
+// multiple search
 app.get("/car", async (req, res) => {
     try {
         const data = await readCarsData();
@@ -134,7 +134,7 @@ app.get("/car", async (req, res) => {
             }
         }
 
-        // 处理 odometer 范围
+        //  odometer range from 0 to infinity
         if (req.query.odometer_min || req.query.odometer_max) {
             const min = parseInt(req.query.odometer_min) || 0;
             const max = parseInt(req.query.odometer_max) || Infinity;
@@ -146,12 +146,12 @@ app.get("/car", async (req, res) => {
 
         res.json(filteredCars);
     } catch (error) {
-        res.status(500).json({ error: "搜索失败" });
+        res.status(500).json({ error: "search failed" });
     }
 });
 
 
-// 启动服务器
+// start service
 app.listen(port, () => {
     console.log(`🚀 Server running at http://localhost:${port}`);
 });
