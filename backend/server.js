@@ -45,20 +45,6 @@ app.get("/cars", async (req, res) => {
     }
 });
 
-// get car
-app.get("/cars/:id", async (req, res) => {
-    try {
-        const data = await readCarsData();
-        const car = data.cars.find(c => c.id === parseInt(req.params.id));
-        if (!car) {
-            return res.status(404).json({ error: "Car not find" });
-        }
-        res.json(car);
-    } catch (error) {
-        res.status(500).json({ error: "Data reading failed" });
-    }
-});
-
 // add a new car to json 
 app.post("/cars", async (req, res) => {
     try {
@@ -75,37 +61,6 @@ app.post("/cars", async (req, res) => {
     }
 });
 
-// update the car info
-app.put("/cars/:id", async (req, res) => {
-    try {
-        const data = await readCarsData();
-        const index = data.cars.findIndex(c => c.id === parseInt(req.params.id));
-        if (index === -1) {
-            return res.status(404).json({ error: "Car not find" });
-        }
-        data.cars[index] = { ...data.cars[index], ...req.body };
-        await writeCarsData(data);
-        res.json(data.cars[index]);
-    } catch (error) {
-        res.status(500).json({ error: "Failed to update" });
-    }
-});
-
-// 删除车辆
-app.delete("/cars/:id", async (req, res) => {
-    try {
-        const data = await readCarsData();
-        const index = data.cars.findIndex(c => c.id === parseInt(req.params.id));
-        if (index === -1) {
-            return res.status(404).json({ error: "Car not find" });
-        }
-        data.cars.splice(index, 1);
-        await writeCarsData(data);
-        res.status(204).send();
-    } catch (error) {
-        res.status(500).json({ error: "Failed to delete the car" });
-    }
-});
 
 // multiple search
 app.get("/car", async (req, res) => {

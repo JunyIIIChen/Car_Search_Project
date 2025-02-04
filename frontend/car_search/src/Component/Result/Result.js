@@ -62,7 +62,7 @@ export default function Result({ searchCriteria }) {
 
   return (
     <div className="result-container">
-      <h2 className="text-xl font-bold mb-4">Car List</h2>
+      {/* <h2 className="text-xl font-bold mb-4">Car List</h2> */}
       <div className="table-wrapper">
         <table className="result-table">
           <thead>
